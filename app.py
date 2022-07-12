@@ -27,7 +27,12 @@ db.create_all()
 class Emaillist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     emailadd = db.Column(db.String(1000), unique=True)
-    complete = db.Column(db.Boolean)
+
+class Readinglist(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    list = db.Column(db.String(1000), unique=True)
+    # author = db.Column(db.String(1000), unique=True)
+    summary = db.Column(db.String(1000), unique=True)
 
 db.create_all()
 
@@ -270,12 +275,34 @@ def update(todo_id):
     return redirect(url_for("show_todo"))
 
 @app.get("/todo/delete/<int:todo_id>")
-def delete(todo_id):
+def deletet(todo_id):
     # todo = Todo.query.filter_by(id=todo_id).first()
     todo = db.session.query(Todo).filter(Todo.id == todo_id).first()
     db.session.delete(todo)
     db.session.commit()
     return redirect(url_for("show_todo"))
+
+@app.get('/books')
+def get_books():
+    listx = db.session.query(Readinglist).all()
+    return render_template("books.html", listy=listx)
+
+@app.get('/books/add')
+def add_books():
+    titlen = request.form.get("booktitle")
+    authorn = request.form.get("bookauthor")
+    summaryn = request.form.get("booksummary")
+    newbook = Readinglist(list=titlen, summary=summaryn)
+    db.session.add(newbook)
+    db.session.commit()
+    return redirect(url_for("get_books"))
+
+@app.get("/books/delete/<int:bookid>")
+def deleteb(bookid):
+    book = db.session.query(Readinglist).filter(Readinglist.id == bookid).first()
+    db.session.delete(book)
+    db.session.commit()
+    return redirect(url_for("get_books"))
 
 @app.route('/newsletter')
 def show_emails():
@@ -291,7 +318,7 @@ def add_newsletter():
             if emailx in emails:
                 flash("Already subscribed!", category="error")
             else:
-                new_email = Emaillist(emailadd=str(emailx), complete=False)
+                new_email = Emaillist(emailadd=str(emailx))
                 db.session.add(new_email)
                 db.session.commit()
                 return redirect(url_for("show_emails"))
@@ -359,5 +386,13 @@ def unique_permutate():
         # except Exception as e:
             # return e
 
+@app.get("/blog")
+def blog_home():
+    return "A blog"
+
+@app.errorhandler(404)
+def error():
+    return "This content doesn't seem to be available, sorry about that"
+
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5050, debug=True)
+    app.run(host="0.0.0.0", port=5050)
