@@ -8,7 +8,7 @@ var components = {
 }
 
 function startGame() {
-    components.bombs = placeBombs();
+    components.bomb = placeBombs();
     document.getElementById('field').appendChild(createTable());
 }
 

@@ -282,12 +282,12 @@ def deletet(todo_id):
     db.session.commit()
     return redirect(url_for("show_todo"))
 
-@app.get('/books')
+@app.route('/books')
 def get_books():
     listx = db.session.query(Readinglist).all()
     return render_template("books.html", listy=listx)
 
-@app.get('/books/add')
+@app.route('/books/add')
 def add_books():
     titlen = request.form.get("booktitle")
     authorn = request.form.get("bookauthor")
@@ -297,7 +297,7 @@ def add_books():
     db.session.commit()
     return redirect(url_for("get_books"))
 
-@app.get("/books/delete/<int:bookid>")
+@app.route("/books/delete/<int:bookid>")
 def deleteb(bookid):
     book = db.session.query(Readinglist).filter(Readinglist.id == bookid).first()
     db.session.delete(book)
@@ -393,6 +393,10 @@ def blog_home():
 @app.errorhandler(404)
 def error():
     return "This content doesn't seem to be available, sorry about that"
+
+@app.route("/math/numberguesser")
+def number_guesser():
+    return render_template('numberguesser.html')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5050)
