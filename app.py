@@ -31,7 +31,7 @@ class Emaillist(db.Model):
 class Readinglist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     list = db.Column(db.String(1000), unique=True)
-    # author = db.Column(db.String(1000), unique=True)
+    author = db.Column(db.String(1000), unique=True)
     summary = db.Column(db.String(1000), unique=True)
 
 db.create_all()
@@ -397,6 +397,14 @@ def error():
 @app.route("/math/numberguesser")
 def number_guesser():
     return render_template('numberguesser.html')
+
+@app.route("/calculators/temperature")
+def convert_temp():
+    return render_template("temperature.html")
+
+@app.get("/calculators/stopwatch")
+def stopwatch():
+    return render_template("stopwatch.html")
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5050)
