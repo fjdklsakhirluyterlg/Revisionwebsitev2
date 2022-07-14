@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "*.py",
+            "use": "@fjdklsakhirluyterlg/Revisionwebsitev2"
+        }
+    ],
+    "routes": [
+        {
+            "src": "(.*)",
+            "dest": "app.py"
+        }
+    ]
+  }
