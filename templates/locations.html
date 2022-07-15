@@ -3,9 +3,13 @@
     <body>
         <form action="/calculators/location">
             <label>Original location</label>
-            <input type="text">
+            <input type="text" name="O">
             <label>New location</label>
-            <input type="text">
+            <input type="text" name="N">
+            <button type="submit">Submit</button>
         </form>
+
+        <p>Distance to </p>
+        <p>{{d}}</p>
     </body>
 </html>

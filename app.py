@@ -447,7 +447,17 @@ def about():
 
 @app.route("/calculators/location")
 def calc_location():
-    return render_template("locations.html")
+    if request.method == "POST":
+        x = request.form["O"]
+        z = x.split()
+        xx = Position("x", z[0], z[1])
+        y = request.form["N"]
+        a = y.split()
+        aa = Position("y", a[0], a[1])
+        s = xx.distance_to(aa)
+        return render_template("locations.html", d=s)
+    else:
+        return(render_template("locations.html"))
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5050)
