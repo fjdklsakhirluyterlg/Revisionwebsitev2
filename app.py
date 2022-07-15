@@ -443,7 +443,11 @@ def bog_add():
 
 @app.route("/about")
 def about():
-    return "Hi there"
+    return "Hi there this is a website"
+
+@app.get("/calculators/location")
+def calc_location():
+    return
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5050)
