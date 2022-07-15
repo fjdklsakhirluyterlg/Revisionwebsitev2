@@ -500,5 +500,10 @@ def ret_ftse100():
     b = get_ecenomic_stuff()
     return f"Ftse currently at {b[1]} points"
 
+@app.route("/ecenomics/sandp500")
+def ret_sandp500():
+    b = get_ecenomic_stuff()
+    return f"S&P 500 surrently at {b[2]} points"
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5050)
