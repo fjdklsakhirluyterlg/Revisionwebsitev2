@@ -447,7 +447,7 @@ def about():
 
 @app.get("/calculators/location")
 def calc_location():
-    return
+    return render_template("locations.html")
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5050)
