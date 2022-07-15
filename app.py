@@ -445,7 +445,7 @@ def bog_add():
 def about():
     return "Hi there this is a website"
 
-@app.get("/calculators/location")
+@app.route("/calculators/location")
 def calc_location():
     return render_template("locations.html")
 
