@@ -1,3 +1,4 @@
+from cv2 import createMergeDebevec
 from flask import Flask, render_template, url_for, request, redirect, send_from_directory, send_file, flash
 from flask_sqlalchemy import SQLAlchemy
 import requests
@@ -403,6 +404,24 @@ def convert_temp():
 @app.get("/calculators/stopwatch")
 def stopwatch():
     return render_template("stopwatch.html")
+
+@app.route("/blog/add", methods=["POST", "GET"])
+def bog_add():
+    if request.method == "POST":
+        x = request.form["title"]
+        cmd = f" cd ./templates && touch {x}.html"
+        os.system(cmd)
+        y = request.form["content1"]
+        z = y.split(". ")
+        with open(f"{x}.html") as file:
+            file.write('{% extends "baseblog.html" %} \n')
+            file.write('{% block title %}' + x + '{% endblock %}')
+            file.write('{% block content%}')
+            for i in z:
+                file.write(f"<p>{i}</p>")
+            file.write("{% endblock %}")
+            file.close()
+    return render_template("blogadd.html")
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5050)

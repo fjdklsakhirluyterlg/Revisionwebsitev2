@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+        <title>{% block title %} {% endblock %}</title>
+        {% endblock %}
+    </head>
+    <body>
+        <div id="content">{% block content %} {% endblock %}</div>
+        {% if imagesrc:%}
+        <!-- <Img src="{{imagesrc}}"> -->
+        <!-- <div id="content2">{% block content2 %}{% endblock %}</div> -->
+    </body>
+</html>
