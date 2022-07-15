@@ -514,5 +514,10 @@ def ret_sandp500():
     b = get_ecenomic_stuff()
     return f"S&P 500 surrently at {b[2]} points"
 
+@app.route("/ecenomics/TSLA")
+def TSLA():
+    b = get_ecenomic_stuff()
+    return f"Tesla market cap: ${b[4]}"
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5050)
