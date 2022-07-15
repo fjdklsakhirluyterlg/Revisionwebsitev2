@@ -111,6 +111,8 @@ def coefficient(x,y):
 
     return a,b,c
 
+
+
 @app.route('/')
 def hello_world():
     return render_template("index.html")
@@ -422,6 +424,10 @@ def bog_add():
             file.write("{% endblock %}")
             file.close()
     return render_template("blogadd.html")
+
+@app.route("/about")
+def about():
+    return "Hi there"
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5050)
