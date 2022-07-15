@@ -45,13 +45,22 @@ def get_ecenomic_stuff():
     result3 = soup3.find_all("div", class_="gel-paragon nw-c-md-market-summary__value")
     stuff.append(result3[0].text)
 
-    # GOOGLE FINANCE SCRAPING
+    # GOOGLE FINANCE SCRAPING AAPL
     URL4 = "https://www.google.com/finance/quote/AAPL:NASDAQ"
     response4 = requests.get(URL4)
 
     soup4 = BeautifulSoup(response4.content, "html.parser")
     result4 = soup4.find_all("div", class_="YMlKec fxKbKc")
     stuff.append(result4[0].text)
+
+    # GOOGLE FINANCE TSLA
+
+    URL5 = "https://www.google.com/finance/quote/TSLA:NASDAQ"
+    response5 = requests.get(URL5)
+
+    soup5 = BeautifulSoup(response5.content, "html.parser")
+    result5 = soup5.find_all("div", class_="P6K39c")
+    stuff.append(result5[0].text)
 
 @dataclass
 class Position:
