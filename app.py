@@ -495,5 +495,10 @@ def calc_location():
     else:
         return(render_template("locations.html"))
 
+@app.route("/ecenomics/ftse100")
+def ret_ftse100():
+    b = get_ecenomic_stuff()
+    return f"Ftse currently at {b[1]} points"
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5050)
