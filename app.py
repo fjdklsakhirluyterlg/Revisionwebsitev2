@@ -598,7 +598,8 @@ def how_many_views_page():
 
 @app.route("/physics/vectors")
 def vector_stuff():
-    pass
+    pass 
+    # Can't be bothered to do the webpage for now
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5050)
