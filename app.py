@@ -76,6 +76,8 @@ def get_ecenomic_stuff():
     result5 = soup5.find_all("div", class_="P6K39c")
     stuff.append(result5[0].text)
 
+    return stuff
+
 class Vector:
 
   def __init__(self, x, y, z):
@@ -591,4 +593,4 @@ def vector_stuff():
     pass
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5050, debug=True)
+    app.run(host="0.0.0.0", port=5050)
