@@ -10,12 +10,20 @@ import random
 from dataclasses import dataclass
 from math import asin, cos, radians, sin, sqrt
 from bs4 import BeautifulSoup
+from flask_restful import Resource, Api
 
 app = Flask(__name__)
+api = Api(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
+class HelloWorld(Resource):
+    def get(self):
+        return {'hello': 'world'}
+
+api.add_resource(HelloWorld, '/api/test')
 
 def get_ecenomic_stuff():
     stuff = []
