@@ -159,6 +159,10 @@ db.create_all()
 
 class Help(db.model):
     id = db.Column(db.Integer, primary_key=True)
+    subject = db.Column(db.String(1000))
+    topic = db.Column(db.String(1000))
+    question = db.Column(db.String(1000))
+    awnser = db.Column(db.String(1000))
     # FUTURE ME: REMEBER TO MAKE THIS SO THAT WHEN SOMEONE SEARCHES FOR HELP ON SOMETHING THEY GET CORRECT AWNSER BACK, IE: ?topic:chemistry&q="electron" GOES TO {"electron": "A subatomic particle with a negative charge and orbits the nuclues in shells"}
 
 def fib(num): 
