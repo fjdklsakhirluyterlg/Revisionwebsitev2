@@ -520,9 +520,10 @@ def TSLA():
 
 @app.route("/admin/views")
 def how_many_views_page():
-    with open("views.txt", "w+") as views:
+    with open("views.txt", "r+") as views:
         x = views.read()
-        views.write(x + 1)
+        x += 1
+        views.write(x)
     return f"this page has been viewd {x} times"
 
 if __name__ == '__main__':
