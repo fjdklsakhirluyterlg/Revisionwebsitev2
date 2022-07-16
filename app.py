@@ -518,5 +518,12 @@ def TSLA():
     b = get_ecenomic_stuff()
     return f"Tesla market cap: ${b[4]}"
 
+@app.route("/admin/views")
+def how_many_views_page():
+    with open("views.txt", "w+") as views:
+        x = views.read()
+        views.write(x + 1)
+    return f"this page has been viewd {x} times"
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5050)
