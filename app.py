@@ -571,5 +571,9 @@ def how_many_views_page():
         views.write(x)
     return f"this page has been viewd {x} times"
 
+@app.route("/physics/vectors")
+def vector_stuff():
+    pass
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5050)
