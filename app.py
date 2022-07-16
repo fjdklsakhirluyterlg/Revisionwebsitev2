@@ -25,6 +25,13 @@ class HelloWorld(Resource):
 
 api.add_resource(HelloWorld, '/api/test')
 
+class GBPTOEUR(Resource):
+    def get(self):
+        x = get_ecenomic_stuff()[0]
+        return {'GBP': f'€{x}'}
+
+api.add_resource(GBPTOEUR, '/api/convert/EURTOGBP')
+
 def get_ecenomic_stuff():
     stuff = []
     # GBP TO EUR
