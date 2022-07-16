@@ -1,4 +1,3 @@
-from cv2 import createMergeDebevec
 from flask import Flask, render_template, url_for, request, redirect, send_from_directory, send_file, flash
 from flask_sqlalchemy import SQLAlchemy
 import requests
