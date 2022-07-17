@@ -56,12 +56,14 @@ class Randomz(Resource):
         
         def fact():
             list = ['Take an angle A, find out what sin(A)^2 + cos(A)^2 is', 'There are more than 6 million parts in an A380', 'Francium is the most reactive element in the world', 'Jeff Bezos could but 2 million tesla model y', 'Japan has the highest debt to GDP ratio in the world with 234%', 'Monaco should score 1.04 on the Human Development Index (HDI), a scale from 0 - 1']
+            return random.choice(list)
         
         x = random.randint(0 ,1000)
         y = randoms()
         z = fortune()
+        z = fact()
 
-        return {'number': x, 'hex colour': y, 'fortune': z}
+        return {'number': x, 'hex colour': y, 'fortune': z, 'fact': z}
 
 api.add_resource(Randomz, '/api/random')
 
