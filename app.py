@@ -642,6 +642,18 @@ def with_parameters():
     age = request.args.get('age', default=4)
     return jsonify(message="My name is " + name + " and I am " + str(age) + " years old")
 
+@app.route("/api/test/question")
+def test_of_question():
+    x = ''
+    subject = request.args.get("subject")
+    topic = request.args.get("topic")
+    question = request.args.get("q")
+    if question.lower() == "vodka is good":
+        x = "Deliscous"
+    else:
+        x = 'test'
+    return jsonify({subject: {topic: {question: x}}})
+
 # @app.before_request
 # def before():
 #     # return "This is executed BEFORE each request."
