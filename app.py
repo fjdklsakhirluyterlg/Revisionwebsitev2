@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect, send_from_directory, send_file, flash
+from flask import Flask, render_template, url_for, request, redirect, send_from_directory, send_file, flash, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import requests
 import smtplib
@@ -635,6 +635,12 @@ def how_many_views_page():
 def vector_stuff():
     pass 
     # Can't be bothered to do the webpage for now
+
+@app.route("/api/test/simpleparams")
+def with_parameters():
+    name = request.args.get('name')
+    age = int(request.args.get('age'))
+    return jsonify(message="My name is " + name + " and I am " + str(age) + " years old")
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5050)
