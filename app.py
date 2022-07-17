@@ -42,6 +42,8 @@ class Banana(Resource):
     def get(self):
         return {'food': {'banana': 'yellow', 'chicken': 'meat'}, 'cities': ['london', 'new york', 'shanghai', 'dehli']}
 
+api.add_resource(Banana, '/api/test/food')
+
 def get_ecenomic_stuff():
     stuff = []
     # GBP TO EUR
