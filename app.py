@@ -642,5 +642,9 @@ def with_parameters():
     age = int(request.args.get('age'))
     return jsonify(message="My name is " + name + " and I am " + str(age) + " years old")
 
+@app.before_request
+def before():
+    print("This is executed BEFORE each request.")
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5050)
