@@ -44,6 +44,24 @@ class Banana(Resource):
 
 api.add_resource(Banana, '/api/test/food')
 
+class Randomz(Resource):
+    def get(self):
+        def randoms():
+            r = lambda: random.randint(0,255)
+            return ['#%02X%02X%02X' % (r(),r(),r())]
+        
+        def fortune():
+            list = ['You will make at least 5 pounds', 'You will watch mr beast in the next week', 'You will quit your job', 'Your next phone will be able to run Genshin impact']
+            return random.choice(list)
+        
+        x = random.randint(0 ,1000)
+        y = randoms()
+        z = fortune()
+
+        return {'number': x, 'hex colour': y, 'fortune': z}
+
+api.add_resource(Randomz, '/api/random')
+
 def get_ecenomic_stuff():
     stuff = []
     # GBP TO EUR
