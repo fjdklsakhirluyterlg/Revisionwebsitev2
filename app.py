@@ -61,9 +61,9 @@ class Randomz(Resource):
         x = random.randint(0 ,1000)
         y = randoms()
         z = fortune()
-        z = fact()
+        a = fact()
 
-        return {'number': x, 'hex colour': y, 'fortune': z, 'fact': z}
+        return {'number': x, 'hex colour': y, 'fortune': z, 'fact': a}
 
 api.add_resource(Randomz, '/api/random')
 
