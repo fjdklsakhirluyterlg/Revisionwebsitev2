@@ -637,10 +637,10 @@ def vector_stuff():
     # Can't be bothered to do the webpage for now
 
 @app.route("/api/test/simpleparams")
-def with_parameters(defaults={'age': 8}):
+def with_parameters():
     name = request.args.get('name')
-    age = request.args.get('age')
-    return jsonify(message="My name is " + name + " and I am " + age + " years old")
+    age = request.args.get('age', default=4)
+    return jsonify(message="My name is " + name + " and I am " + str(age) + " years old")
 
 # @app.before_request
 # def before():
