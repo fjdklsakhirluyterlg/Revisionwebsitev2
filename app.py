@@ -32,6 +32,12 @@ class GBPTOEUR(Resource):
 
 api.add_resource(GBPTOEUR, '/api/convert/EURTOGBP')
 
+class APIrickroll(Resource):
+    def get(self):
+        return {'Rick astley': 'Never gonna give you up'}
+
+api.add_resource(APIrickroll, '/api/test/dQw4w9WgXcQ')
+
 def get_ecenomic_stuff():
     stuff = []
     # GBP TO EUR
@@ -157,7 +163,7 @@ class Readinglist(db.Model):
 
 db.create_all()
 
-class Help(db.model):
+class Help(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     subject = db.Column(db.String(1000))
     topic = db.Column(db.String(1000))
