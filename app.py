@@ -38,6 +38,10 @@ class APIrickroll(Resource):
 
 api.add_resource(APIrickroll, '/api/test/dQw4w9WgXcQ')
 
+class Banana(Resource):
+    def get(self):
+        return {'food': {'banana': 'yellow', 'chicken': 'meat'}, 'cities': ['london', 'new york', 'shanghai', 'dehli']}
+
 def get_ecenomic_stuff():
     stuff = []
     # GBP TO EUR
