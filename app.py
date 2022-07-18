@@ -611,7 +611,7 @@ def convert_temp():
 def stopwatch():
     return render_template("stopwatch.html")
 
-@app.route("/blog/add", methods=["POST", "GET"])
+@app.route("/bloger/add", methods=["POST", "GET"])
 def bog_add():
     if request.method == "POST":
         x = request.form["title"]
