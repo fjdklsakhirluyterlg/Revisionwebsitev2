@@ -726,6 +726,11 @@ def api_fibonacci():
     except:
         return jsonify(error='Must be integer')
 
+@app.route("/api/math/generatepi")
+def show_gen_π():
+    num = request.args.get("accuracy")
+    return jsonify(guess=generateπfrom_random(num))
+
 # @app.before_request
 # def before():
 #     # return "This is executed BEFORE each request."
