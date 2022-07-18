@@ -13,8 +13,7 @@ from math import asin, cos, radians, sin, sqrt
 from bs4 import BeautifulSoup
 from flask_restful import Resource, Api
 from datetime import datetime
-import ctypes
-import pathlib
+from ctypes import cdll
 
 app = Flask(__name__)
 api = Api(app)
@@ -332,6 +331,12 @@ def generateπfrom_random(n):
         total +=1
     
     return 4*ins/total
+
+def cpp_generate_π():
+    lib = cdll.LoadLibrary('./c++/runner.o')
+    print(lib)
+
+cpp_generate_π()
 
 
 @app.route('/')

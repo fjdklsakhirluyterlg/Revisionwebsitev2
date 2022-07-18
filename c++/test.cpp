@@ -24,5 +24,10 @@ float generateπ_from_random(int n){
 }
 
 int main(){
+    int x;
+    cout << "Enter a number";
+    cin >> x;
+    float z = generateπ_from_random(x);
+    cout << z;
     return 0;
 }
