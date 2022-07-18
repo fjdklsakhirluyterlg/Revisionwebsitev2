@@ -256,37 +256,39 @@ def collatz(num):
     return num
 
 def send_email(address):
-    sender_email = "drive.banerjee.armaan@gmail.com"
-    receiver_email = address
-    password = "ixsrblyncyrupttv"
-    message = EmailMessage()
-    subject = "HI there"
-    body = f"Hello there, you have been emailed from me, your email adress is {address}"
-    message["From"] = sender_email
-    message["To"] = receiver_email
-    message["Subject"] = subject
+    try:
+        sender_email = "drive.banerjee.armaan@gmail.com"
+        receiver_email = address
+        password = "ixsrblyncyrupttv"
+        message = EmailMessage()
+        subject = "HI there"
+        body = f"Hello there, you have been emailed from me, your email adress is {address}"
+        message["From"] = sender_email
+        message["To"] = receiver_email
+        message["Subject"] = subject
 
-    html = f"""
-    <html>
-        <body>
-            <h1>{subject}</h1>
-            <br>
-            <p>{body}</p>
-        </body>
-    </html>
-    """
+        html = f"""
+        <html>
+            <body>
+                <h1>{subject}</h1>
+                <br>
+                <p>{body}</p>
+            </body>
+        </html>
+        """
 
-    message.add_alternative(html, subtype="html")
+        message.add_alternative(html, subtype="html")
 
-    context = ssl.create_default_context()
+        context = ssl.create_default_context()
 
-    print("Sending Email!")
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-        server.login(sender_email, password)
-        server.sendmail(sender_email, receiver_email, message.as_string())
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+            server.login(sender_email, password)
+            server.sendmail(sender_email, receiver_email, message.as_string())
 
-    print("Success")
+        return "Success"
+    except:
+        return "Failed"
 
 def is_integer_num(n):
     if isinstance(n, int):
@@ -692,6 +694,12 @@ def test_of_question():
     else:
         x = 'test'
     return jsonify({subject: {topic: {question: x}}})
+
+@app.route("/api/sendemail")
+def api_email():
+    adress = request.args.get("adress")
+    x = send_email(adress)
+    return jsonify(status=x)
 
 # @app.before_request
 # def before():
