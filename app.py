@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect, send_from_directory, send_file, flash, jsonify
+from flask import Flask, render_template, url_for, request, redirect, send_from_directory, send_file, flash, jsonify, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 import requests
 import smtplib
@@ -11,9 +11,13 @@ from dataclasses import dataclass
 from math import asin, cos, radians, sin, sqrt
 from bs4 import BeautifulSoup
 from flask_restful import Resource, Api
+from datetime import datetime
 
 app = Flask(__name__)
 api = Api(app)
+
+blogs= Blueprint('blogs',__name__)
+app.register_blueprint(blogs)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -192,6 +196,39 @@ class Readinglist(db.Model):
 
 db.create_all()
 
+class Tag(db.Model):
+    id=db.Column(db.Integer,primary_key=True)
+    name=db.Column(db.String(20))
+    @property
+    def serialize(self):
+        return {
+        'id': self.id,
+        'name': self.name     
+        }
+
+tag_blog = db.Table('tag_blog',
+    db.Column('tag_id',db.Integer,db.ForeignKey('tag.id'), primary_key=True),
+    db.Column('blog_id', db.Integer,db.ForeignKey('blog.id'),primary_key=True)
+)
+
+class Blog(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    title=db.Column(db.String(50),nullable=False)
+    content=db.Column(db.Text,nullable=False)
+    feature_image= db.Column(db.String,nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    tags=db.relationship('Tag',secondary=tag_blog,backref=db.backref('blogs_associated',lazy="dynamic"))
+ 
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'content': self.content,
+            'feature_image': self.feature_image,
+            'created_at': self.created_at,
+        }
+
 class Help(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     subject = db.Column(db.String(1000))
@@ -199,6 +236,8 @@ class Help(db.Model):
     question = db.Column(db.String(1000))
     awnser = db.Column(db.String(1000))
     # FUTURE ME: REMEBER TO MAKE THIS SO THAT WHEN SOMEONE SEARCHES FOR HELP ON SOMETHING THEY GET CORRECT AWNSER BACK, IE: ?topic:chemistry&q="electron" GOES TO {"electron": "A subatomic particle with a negative charge and orbits the nuclues in shells"}
+
+db.create_all()
 
 def fib(num): 
     result = []
@@ -657,6 +696,71 @@ def test_of_question():
 # @app.before_request
 # def before():
 #     # return "This is executed BEFORE each request."
+
+@blogs.route('/add_blog',methods=["POST"])
+def create_blog():
+    data = request.get_json()
+ 
+    new_blog=Blog(title=data["title"],content=data["content"],feature_image=data["feature_image"])
+ 
+    for tag in data["tags"]:
+        present_tag=Tag.query.filter_by(name=tag).first()
+        if(present_tag):
+            present_tag.blogs_associated.append(new_blog)
+        else:
+            new_tag=Tag(name=tag)
+            new_tag.blogs_associated.append(new_blog)
+            db.session.add(new_tag)
+            
+ 
+    db.session.add(new_blog)
+    db.session.commit()
+ 
+    blog_id = getattr(new_blog, "id")
+    return jsonify({"id": blog_id})
+
+
+@blogs.route('/blogs',methods=["GET"])
+def get_all_blogs():
+    blogs= Blog.query.all()
+    serialized_data = []
+    for blog in blogs:
+        serialized_data.append(blog.serialize)
+ 
+    return jsonify({"all_blogs": serialized_data})
+
+@blogs.route('/blog/<int:id>',methods=["GET"])
+def get_single_blog(id):
+    blog = Blog.query.filter_by(id=id).first()
+    serialized_blog = blog.serialize
+    serialized_blog["tags"] = []
+ 
+    for tag in blog.tags:
+        serialized_blog["tags"].append(tag.serialize)
+ 
+    return jsonify({"single_blog": serialized_blog})
+
+@blogs.route('/update_blog/<int:id>', methods=["PUT"])
+def update_blog(id):
+    data = request.get_json()
+    blog=Blog.query.filter_by(id=id).first_or_404()
+ 
+    blog.title = data["title"]
+    blog.content=data["content"]
+    blog.feature_image=data["feature_image"]
+ 
+    updated_blog = blog.serialize
+ 
+    db.session.commit()
+    return jsonify({"blog_id": blog.id})
+
+@blogs.route('/delete_blog/<int:id>', methods=["DELETE"])
+def delete_blog(id):
+    blog = Blog.query.filter_by(id=id).first()
+    db.session.delete(blog)
+    db.session.commit()
+ 
+    return jsonify("Blog was deleted"),200
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5050)
