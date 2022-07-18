@@ -728,7 +728,7 @@ def api_fibonacci():
 
 @app.route("/api/math/generatepi")
 def show_gen_π():
-    num = request.args.get("accuracy")
+    num = int(request.args.get("accuracy"))
     return jsonify(guess=generateπfrom_random(num))
 
 # @app.before_request
