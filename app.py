@@ -1,3 +1,4 @@
+import json
 from flask import Flask, render_template, url_for, request, redirect, send_from_directory, send_file, flash, jsonify, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 import requests
@@ -700,6 +701,15 @@ def api_email():
     adress = request.args.get("adress")
     x = send_email(adress)
     return jsonify(status=x)
+
+@app.route("/api/math/fibonacci")
+def api_fibonacci():
+    num = request.args.get("limit")
+    x = fib(num)
+    dict = {}
+    for i in range(len(x)):
+        dict[i] = x[i]
+    return jsonify(dict, x)
 
 # @app.before_request
 # def before():
