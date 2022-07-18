@@ -705,11 +705,14 @@ def api_email():
 @app.route("/api/math/fibonacci")
 def api_fibonacci():
     num = request.args.get("limit")
-    x = fib(num)
-    dict = {}
-    for i in range(len(x)):
-        dict[i] = x[i]
-    return jsonify(dict, x)
+    try:
+        x = fib(int(num))
+        dict = {}
+        for i in range(len(x)):
+            dict[i] = x[i]
+        return jsonify(dict, x)
+    except:
+        return jsonify(error='Must be integer')
 
 # @app.before_request
 # def before():
