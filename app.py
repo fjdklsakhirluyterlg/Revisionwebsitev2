@@ -39,6 +39,13 @@ class GBPTOEUR(Resource):
 
 api.add_resource(GBPTOEUR, '/api/convert/EURTOGBP')
 
+class ftse100(Resource):
+    def get(self):
+        x = get_ecenomic_stuff()[1]
+        return {'FTSE100': x}
+
+api.add_resource(ftse100, '/api/ecenomics/ftse100')
+
 class APIrickroll(Resource):
     def get(self):
         return {'Rick astley': 'Never gonna give you up'}
