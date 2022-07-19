@@ -84,7 +84,8 @@ api.add_resource(Randomz, '/api/random')
 class top_bbc_news(Resource):
     def get(self):
         lst = get_top_bbc_news()
-        res_dct = {i + 1: lst[i] for i in range(0, len(lst))}
+        link = get_top_bbc_links()
+        res_dct = {i + 1: {'headlin': lst[i], 'link': link[i]} for i in range(0, len(lst))}
         return res_dct
 
 api.add_resource(top_bbc_news, "/api/news/bbc/top")
@@ -368,6 +369,20 @@ def get_top_bbc_news():
     # print(lib)
 
 # cpp_generate_π()
+
+def get_top_bbc_links():
+    URL = "https://www.bbc.co.uk/news"
+    response2  = requests.get(URL)
+    z = []
+
+    soup2 = BeautifulSoup(response2.content, "html.parser")
+    result2 = soup2.find_all("a", {'class': "gs-c-promo-heading nw-o-link gs-o-bullet__text gs-o-faux-block-link__overlay-link gel-pica-bold gs-u-pl-@xs"})
+
+    for i in result2:
+        x = i.get("href")
+        z.append(x)
+    
+    return z
 
 
 @app.route('/')
