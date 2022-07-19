@@ -740,7 +740,7 @@ def show_gen_π():
     x = generateπfrom_random(num)
     π = math.pi
     difference = π - x
-    percentoff = (x / π)*100
+    percentoff = 1 - (x / π)*100
     return jsonify(guess=x, actual=π, difference=difference, percenterror = percentoff)
 
 # @app.before_request
