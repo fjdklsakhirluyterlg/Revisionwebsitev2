@@ -743,6 +743,15 @@ def show_gen_π():
     percentoff = 100 - (x / π)*100
     return jsonify(guess=x, actual=π, difference=difference, percenterror = percentoff, tip='Try 1000')
 
+@app.route("/api/test/numberguesser")
+def number_guesser_api():
+    num = int(request.args.get("guess"))
+    x = random.randint(0, 100)
+    if num == x:
+        return jsonify(number=num, correct=True)
+    else:
+        return jsonify(number=num, correct=False, actual=x)
+
 # @app.before_request
 # def before():
 #     # return "This is executed BEFORE each request."
