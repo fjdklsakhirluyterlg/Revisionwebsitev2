@@ -271,8 +271,17 @@ def fib(num):
        count += 1
     return result
 
+
+# DO THIS
+# 
+# 
+# 
 def collatz(num):
-    return num
+    x = "I shall pass for now"
+# 
+# 
+# 
+# 
 
 def send_email(address):
     try:
