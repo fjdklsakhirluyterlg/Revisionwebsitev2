@@ -85,7 +85,7 @@ class top_bbc_news(Resource):
     def get(self):
         lst = get_top_bbc_news()
         link = get_top_bbc_links()
-        res_dct = {i + 1: {'headline': lst[i], 'link': link[i]} for i in range(0, len(lst))}
+        res_dct = {i + 1: {'headline': lst[i], 'link': f"https://www.bbc.co.uk{link[i]}"} for i in range(0, len(lst))}
         return res_dct
 
 api.add_resource(top_bbc_news, "/api/news/bbc/top")
