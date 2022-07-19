@@ -340,6 +340,21 @@ def generateπfrom_random(n):
     
     return 4*ins/total
 
+def get_top_bbc_news():
+    URL = "https://www.bbc.co.uk/news"
+
+    response  = requests.get(URL)
+
+    soup = BeautifulSoup(response.content, "html.parser")
+    result = soup.find_all("span", "gs-c-promo-heading__title gel-pica-bold")
+
+    x = []
+
+    for i in result:
+        x.append(i.text)
+
+    print(x[-10:])
+
 # def cpp_generate_π():
     # lib = cdll.LoadLibrary('./c++/runner.o')
     # print(lib)
