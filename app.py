@@ -1,4 +1,5 @@
 import json
+import math
 from flask import Flask, render_template, url_for, request, redirect, send_from_directory, send_file, flash, jsonify, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 import requests
@@ -736,7 +737,11 @@ def api_fibonacci():
 @app.route("/api/math/generatepi")
 def show_gen_π():
     num = int(request.args.get("accuracy"))
-    return jsonify(guess=generateπfrom_random(num))
+    x = generateπfrom_random(num)
+    π = math.pi
+    difference = π - x
+    percentoff = (x / π)*100
+    return jsonify(guess=x, actual=π, difference=difference, percenterror = percentoff)
 
 # @app.before_request
 # def before():
