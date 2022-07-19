@@ -81,6 +81,17 @@ class Randomz(Resource):
 
 api.add_resource(Randomz, '/api/random')
 
+class top_bbc_news(Resource):
+    def get(self):
+        dicts = {}
+        x = get_top_bbc_news()
+        for i, article in enumerate(x):
+            dict[i] = article
+
+        return dicts
+
+api.add_resource(top_bbc_news, "/api/news/bbc/top")
+
 def get_ecenomic_stuff():
     stuff = []
     # GBP TO EUR
@@ -353,7 +364,7 @@ def get_top_bbc_news():
     for i in result:
         x.append(i.text)
 
-    print(x[-10:])
+    return x[-10:]
 
 # def cpp_generate_π():
     # lib = cdll.LoadLibrary('./c++/runner.o')
