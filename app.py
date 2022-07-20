@@ -277,7 +277,7 @@ def fib(num):
 # 
 # 
 def collatz(num):
-    x = "I shall pass for now"
+    x = num
 # 
 # 
 # 
