@@ -277,7 +277,9 @@ def fib(num):
 # 
 # 
 def collatz(num):
-    x = num
+    x = []
+    if num % 2 == 0:
+        num = num 
 # 
 # 
 # 
