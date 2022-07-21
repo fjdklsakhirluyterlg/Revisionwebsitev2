@@ -331,8 +331,8 @@ def send_email(address):
             server.sendmail(sender_email, receiver_email, message.as_string())
 
         return "Success"
-    except:
-        return "Failed"
+    except Exception as e:
+        return e
 
 def is_integer_num(n):
     if isinstance(n, int):
@@ -638,7 +638,7 @@ def emailer():
             if x == "Success":
                 return "Sent the email successfully"
             else:
-                return "OOPS, somethign went wrong!"
+                return x
         except:
             return f"Did not work properly, are you sure you meant to send it to {Email}"
     else:
