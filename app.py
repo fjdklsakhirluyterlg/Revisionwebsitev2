@@ -22,9 +22,11 @@ api = Api(app)
 blogs= Blueprint('blogs',__name__)
 app.register_blueprint(blogs)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+db = SQLAlchemy()
+DB_NAME = "database.db"
+
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
 
 class HelloWorld(Resource):
     def get(self):
