@@ -634,8 +634,11 @@ def emailer():
     if request.method == "POST":
         try:
             Email = request.form["Email"]
-            send_email(Email)
-            return "Sent the email successfully"
+            x = send_email(Email)
+            if x == "Success":
+                return "Sent the email successfully"
+            else:
+                return "OOPS, somethign went wrong!"
         except:
             return f"Did not work properly, are you sure you meant to send it to {Email}"
     else:
