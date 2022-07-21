@@ -302,6 +302,9 @@ def send_email(address):
         message = EmailMessage()
         subject = "HI there"
         body = f"Hello there, you have been emailed from me, your email adress is {address}"
+        x = get_ecenomic_stuff()
+        l = x[0]
+        body2 = f"The GBP is worth €{l}"
         message["From"] = sender_email
         message["To"] = receiver_email
         message["Subject"] = subject
@@ -312,6 +315,8 @@ def send_email(address):
                 <h1>{subject}</h1>
                 <br>
                 <p>{body}</p>
+                <p>{body2}</p>
+                <iframe src="https://giphy.com/embed/icUEIrjnUuFCWDxFpU" width="480" height="260" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/foxhomeent-napoleon-dynamite-20th-century-fox-icUEIrjnUuFCWDxFpU">via GIPHY</a></p>
             </body>
         </html>
         """
