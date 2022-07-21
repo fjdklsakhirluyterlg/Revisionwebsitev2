@@ -638,7 +638,8 @@ def emailer():
             if x == "Success":
                 return "Sent the email successfully"
             else:
-                return x
+                print(x)
+                return "Somethin went wrong"
         except:
             return f"Did not work properly, are you sure you meant to send it to {Email}"
     else:
