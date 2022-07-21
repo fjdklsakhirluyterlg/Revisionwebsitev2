@@ -817,6 +817,19 @@ def number_guesser_api():
     else:
         return jsonify(number=num, correct=False, actual=x)
 
+@app.route("/api/math/collatz")
+def collatz_api():
+    num = int(request.args.get("number"))
+    try:
+        x = collatz(num)
+        dict = {}
+        for i in range(len(x)):
+            dict[i] = x[i]
+        return jsonify(dict, x)
+    except:
+        return jsonify(message="Must be an integer")
+    
+
 # @app.before_request
 # def before():
 #     # return "This is executed BEFORE each request."
