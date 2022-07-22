@@ -797,6 +797,10 @@ def vector_stuff():
     pass 
     # Can't be bothered to do the webpage for now
 
+@app.route("/covid")
+def covid():
+    return 0
+
 @app.route("/api/test/simpleparams")
 def with_parameters():
     name = request.args.get('name')
