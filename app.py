@@ -801,6 +801,10 @@ def vector_stuff():
 def covid():
     return 0
 
+@app.route("/physics/gold-leaf-electroscope")
+def gold_leaf_electroscope():
+    return 0
+
 @app.route("/api/test/simpleparams")
 def with_parameters():
     name = request.args.get('name')
