@@ -813,6 +813,10 @@ def alkaline_earth_matals():
 def reaction_with_water():
     return 0
 
+@app.route("/docs")
+def docs():
+    return "This is the official  documentation"
+
 @app.route("/api/test/simpleparams")
 def with_parameters():
     name = request.args.get('name')
@@ -825,8 +829,8 @@ def test_of_question():
     subject = request.args.get("subject")
     topic = request.args.get("topic")
     question = request.args.get("q")
-    if question.lower() == "vodka is good":
-        x = "Deliscous"
+    if question.lower() == "help":
+        x = "Please go to /docs"
     else:
         x = 'test'
     return jsonify({subject: {topic: {question: x}}})
