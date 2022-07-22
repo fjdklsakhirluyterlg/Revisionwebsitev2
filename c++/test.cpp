@@ -29,5 +29,5 @@ int main(){
     cin >> x;
     float z = generateπ_from_random(x);
     cout << z;
-    return 0;
+    return z;
 }
