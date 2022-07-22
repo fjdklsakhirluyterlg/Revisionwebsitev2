@@ -316,7 +316,7 @@ def send_email(address):
                 <br>
                 <p>{body}</p>
                 <p>{body2}</p>
-                <iframe src="https://giphy.com/embed/icUEIrjnUuFCWDxFpU" width="480" height="260" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/foxhomeent-napoleon-dynamite-20th-century-fox-icUEIrjnUuFCWDxFpU">via GIPHY</a></p>
+                <iframe src="https://giphy.com/embed/icUEIrjnUuFCWDxFpU" width="480" height="260" frameBorder="0" class="giphy-embed" alt="Hello gif"></iframe>
             </body>
         </html>
         """
