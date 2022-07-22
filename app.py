@@ -316,7 +316,7 @@ def send_email(address):
                 <br>
                 <p>{body}</p>
                 <p>{body2}</p>
-                <iframe src="https://giphy.com/embed/icUEIrjnUuFCWDxFpU" alt="Hello gif"></iframe>
+                <img src="./hello.jpeg" alt="hello image">
             </body>
         </html>
         """
