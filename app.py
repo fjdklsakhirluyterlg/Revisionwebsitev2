@@ -30,7 +30,7 @@ db = SQLAlchemy(app)
 
 class HelloWorld(Resource):
     def get(self):
-        return {'hello': 'world'}
+        return {'hello': 'there'}
 
 api.add_resource(HelloWorld, '/api/test')
 
