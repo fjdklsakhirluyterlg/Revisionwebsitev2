@@ -409,6 +409,32 @@ def get_top_bbc_links():
     
     return z
 
+def get_world_covid():
+    URL = "https://www.worldometers.info/coronavirus/"
+
+    x = []
+
+    response = requests.get(URL)
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    result = soup.find_all("div", "maincounter-number")
+    x.append(result[0].text)
+    x.append(result[1].text)
+    x.append(result[2].text)
+    return x
+
+def get_country_covid(country):
+    x = []
+    URL = f"https://www.worldometers.info/coronavirus/country/{country}"
+    response = requests.get(URL)
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    result = soup.find_all("div", "maincounter-number")
+    x.append(result[0].text)
+    x.append(result[1].text)
+    x.append(result[2].text)
+    return x
+
 
 @app.route('/')
 def hello_world():
