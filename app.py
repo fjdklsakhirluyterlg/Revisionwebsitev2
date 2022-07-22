@@ -19,6 +19,12 @@ from datetime import datetime
 app = Flask(__name__)
 api = Api(app)
 
+@app.errorhandler("505")
+def fiveofive():
+    return "An internal error occured"
+
+# what is url_map
+
 blogs= Blueprint('blogs',__name__)
 app.register_blueprint(blogs)
 
