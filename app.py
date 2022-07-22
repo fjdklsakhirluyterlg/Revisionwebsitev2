@@ -805,6 +805,14 @@ def covid():
 def gold_leaf_electroscope():
     return 0
 
+@app.route("/chemistry/group1")
+def alkaline_earth_matals():
+    return 0
+
+@app.route("/chemistyr/reaction-with-water")
+def reaction_with_water():
+    return 0
+
 @app.route("/api/test/simpleparams")
 def with_parameters():
     name = request.args.get('name')
