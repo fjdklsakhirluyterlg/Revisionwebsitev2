@@ -19,9 +19,9 @@ from datetime import datetime
 app = Flask(__name__)
 api = Api(app)
 
-# @app.errorhandler("505")
-# def fiveofive():
-#     return "An internal error occured"
+@app.errorhandler(500)
+def internal_server_error(e):
+    return f"Something went wrong : {e}", 500
 
 # what is url_map
 
