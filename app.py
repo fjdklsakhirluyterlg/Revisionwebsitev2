@@ -328,8 +328,12 @@ def collatz(num):
 def get_day_of_the_year():
     days = 0
     year = datetime.datetime.now().year
-    if year % 4 == 0 and year % 100 != 0:
+    if year % 4 == 0 and year % 100 != 0 or year % 400 == 0:
         days = 366
+    else:
+        days = 365
+    days_passed_year = datetime.now().timetuple().tm_yday
+    return jsonify(time=datetime.datetime.now(), days_total=days, days_passed=days_passed_year, days_to_go=(days-days_passed_year))
 
 
 def send_email(address):
