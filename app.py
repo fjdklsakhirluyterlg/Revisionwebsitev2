@@ -333,7 +333,7 @@ def get_day_of_the_year():
     else:
         days = 365
     days_passed_year = datetime.now().timetuple().tm_yday
-    return jsonify(time=datetime.now(), days_total=days, days_passed=days_passed_year, days_to_go=(days-days_passed_year))
+    return jsonify(time=datetime.now() , days_total=days , days_passed=days_passed_year , days_to_go=(days-days_passed_year) )
 
 
 def send_email(address):
