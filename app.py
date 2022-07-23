@@ -232,9 +232,17 @@ class Emaillist(db.Model):
 
 class Readinglist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    list = db.Column(db.String(1000), unique=True)
-    author = db.Column(db.String(1000), unique=True)
+    list = db.Column(db.String(1000))
+    author = db.Column(db.String(1000))
     summary = db.Column(db.String(1000), unique=True)
+    pages = db.Column(db.Integer)
+
+class Cars(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(150))
+    brand = db.Column(db.String(150))
+    top_speed = db.Column(db.Integer)
+    horespower = db.Column(db.Integer)
 
 db.create_all()
 
