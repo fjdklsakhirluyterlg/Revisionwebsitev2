@@ -32,6 +32,10 @@ def method_not_allowed(e):
     else:
         return "wrong method!"
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return f"Sorry could not find {request.path}"
+
 # what is url_map
 
 # @app.add_template_filter()
