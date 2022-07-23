@@ -838,6 +838,10 @@ def reaction_with_water():
 def docs():
     return "This is the official  documentation"
 
+@app.route("/conway-game-life")
+def conway_game_of_life():
+    return "I am working on it"
+
 @app.route("/api/test/simpleparams")
 def with_parameters():
     name = request.args.get('name')
