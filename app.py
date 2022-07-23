@@ -242,7 +242,10 @@ class Cars(db.Model):
     name = db.Column(db.String(150))
     brand = db.Column(db.String(150))
     top_speed = db.Column(db.Integer)
-    horespower = db.Column(db.Integer)
+    horsepower = db.Column(db.Integer)
+    length = db.Column(db.Integer)
+    width = db.Column(db.Integer)
+    rating = db.Column(db.Float)
 
 db.create_all()
 
