@@ -325,6 +325,12 @@ def collatz(num):
 # 
 # 
 
+def get_day_of_the_year():
+    days = 0
+    year = datetime.datetime.now().year
+    if year % 4 == 0 and year % 100 != 0:
+        days = 366
+
 
 def send_email(address):
     try:
