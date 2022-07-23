@@ -25,6 +25,8 @@ def fiveofive():
 
 # what is url_map
 
+# @app.add_template_filter()
+
 blogs= Blueprint('blogs',__name__)
 app.register_blueprint(blogs)
 
