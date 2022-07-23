@@ -863,6 +863,11 @@ def docs():
 def conway_game_of_life():
     return "I am working on it"
 
+@app.route("/api/day-of-the-year")
+def day_of_year():
+    x = get_day_of_the_year()
+    return x
+
 @app.route("/api/test/simpleparams")
 def with_parameters():
     name = request.args.get('name')
