@@ -10,7 +10,7 @@ from itertools import permutations
 import os
 import random
 from dataclasses import dataclass
-from math import asin, cos, radians, sin, sqrt
+from math import asin, cos, radians, sin, sqrt, tan
 from bs4 import BeautifulSoup
 from flask_restful import Resource, Api
 from datetime import datetime
@@ -417,6 +417,22 @@ def area_based_on_sides(sides, length):
     elif sides == 5:
         x = (5*(5 + 2*(5**0.5)))
         return (1/4)*x*length**2
+    elif sides == 6:
+        x = 3*(3**0.5)
+        return (x/2) * length**2
+    elif sides % 2 == 1:
+        x = (sides/4)*length**2
+        a = 1/(tan(180/sides))
+        return x*a
+    elif sides == 8:
+        x = 2*(1 + 2**0.5)*length**2
+    elif sides == 10:
+        x = (5/2)*length**2
+        a = (5 + 2*(5**0.5))**0.5
+        return x*a
+    else:
+        return math.pi*length**2
+    
 
 def coefficient(x,y):
     x_1 = x[0]
