@@ -402,6 +402,15 @@ def bmi(weigth, height):
     x = weigth / height ** 2
     return x
 
+def area_based_on_sides(sides, length):
+    if sides == 1:
+        area = math.pi * length**2
+        return area
+    elif sides == 3:
+        s = (length * 3) / 2
+        a = s*(s-length)*(s-length)*(s-length)
+        return a**0.5
+
 def coefficient(x,y):
     x_1 = x[0]
     x_2 = x[1]
