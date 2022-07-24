@@ -3,3 +3,4 @@ flask_sqlalchemy
 requests
 bs4
 flask_restful
+opencv-python
