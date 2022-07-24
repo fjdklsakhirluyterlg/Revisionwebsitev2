@@ -40,7 +40,7 @@ def page_not_found(e):
 
 # @app.add_template_filter()
 
-blogs= Blueprint('blogs',__name__)
+blogs = Blueprint('blogs',__name__)
 app.register_blueprint(blogs)
 
 DB_NAME = "database.db"
