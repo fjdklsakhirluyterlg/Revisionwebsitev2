@@ -42,11 +42,10 @@
         let food_y;
         let dx = 10;
         let dy = 0;
-                
+        
         const snakeboard = document.getElementById("snakeboard");
         const snakeboard_ctx = snakeboard.getContext("2d");
         main();
-
         gen_food();
 
         document.addEventListener("keydown", change_direction);
@@ -60,9 +59,7 @@
             clear_board();
             drawFood();
             move_snake();
-            drawSnake();
-            drawGrid(400, 400, "snakeboard")
-        
+            drawSnake();        
             main();
       }, 100)
     }
