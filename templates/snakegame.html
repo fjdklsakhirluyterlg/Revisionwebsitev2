@@ -8,6 +8,7 @@
   <body>
 
     <div id="score">0</div>
+    <p id="Num"></p>
     <canvas id="snakeboard" width="800" height="500"></canvas>
 
     <style>
@@ -38,6 +39,7 @@
         ]
     
         let score = 0;
+        let food = 0;
         let changing_direction = false;
         let food_x;
         let food_y;
@@ -153,7 +155,9 @@
       const has_eaten_food = snake[0].x === food_x && snake[0].y === food_y;
       if (has_eaten_food) {
         score += 20;
+        food += 1;
         document.getElementById('score').innerHTML = score;
+        document.getElementById('Num').innerHTML = food;
         gen_food();
       } else {
         snake.pop();
