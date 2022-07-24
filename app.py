@@ -159,6 +159,21 @@ def get_ecenomic_stuff():
 
     return stuff
 
+def get_user_ip_address():
+    if 'X-Forwarded-For' in request.headers:
+        ip_address = str(request.headers['X-Forwarded-For'])
+    else:
+        ip_address = str(request.environ.get('HTTP_X_REAL_IP',
+                         request.remote_addr))
+
+    if ip_address == '127.0.0.1':
+        ip_address = requests.get('http://ipecho.net/plain')
+        if ip_address.status_code != 200:
+            ip_address = requests.get('http://ip.42.pl/raw')
+        ip_address = ip_address.text
+    ip_address = ip_address.split(",")[0]
+    return ip_address
+
 class Vector:
 
   def __init__(self, x, y, z):
