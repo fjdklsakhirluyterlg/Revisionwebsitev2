@@ -519,7 +519,7 @@ def get_tfl():
         
         return r
     
-    return f"<p>The following are problematic: {is_tube_on()}</p>"
+    return f'<p>The following are problematic: {is_tube_on()}</p>'
 
 @app.route('/physics')
 def physics():
