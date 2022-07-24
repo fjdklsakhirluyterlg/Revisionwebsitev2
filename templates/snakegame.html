@@ -8,7 +8,7 @@
   <body>
 
     <div id="score">0</div>
-    <p id="Num"></p>
+    <p id="s"></p>
     <canvas id="snakeboard" width="800" height="500"></canvas>
 
     <style>
@@ -157,7 +157,7 @@
         score += 20;
         food += 1;
         document.getElementById('score').innerHTML = score;
-        document.getElementById('Num').innerHTML = food;
+        document.getElementById('s').innerHTML = food;
         gen_food();
       } else {
         snake.pop();
