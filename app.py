@@ -398,6 +398,10 @@ def is_integer_num(n):
         return n.is_integer()
     return False
 
+def bmi(weigth, height):
+    x = weigth / height ** 2
+    return x
+
 def coefficient(x,y):
     x_1 = x[0]
     x_2 = x[1]
