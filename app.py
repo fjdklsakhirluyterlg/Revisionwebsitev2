@@ -406,10 +406,17 @@ def area_based_on_sides(sides, length):
     if sides == 1:
         area = math.pi * length**2
         return area
+    elif sides == 2:
+        return length
     elif sides == 3:
         s = (length * 3) / 2
         a = s*(s-length)*(s-length)*(s-length)
         return a**0.5
+    elif sides == 4:
+        return length**2
+    elif sides == 5:
+        x = (5*(5 + 2*(5**0.5)))
+        return (1/4)*x*length**2
 
 def coefficient(x,y):
     x_1 = x[0]
