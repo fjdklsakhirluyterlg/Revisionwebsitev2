@@ -174,6 +174,17 @@ def get_user_ip_address():
     ip_address = ip_address.split(",")[0]
     return ip_address
 
+def get_loc_from_ip(ip):
+    x = requests.get(f"https://ipinfo.io/{ip}")
+    a = x["city"]
+    b = x["region"]
+    c = x["country"]
+    d = x["loc"]
+    e = x["org"]
+    f = x["postal"]
+    
+    
+
 class Vector:
 
   def __init__(self, x, y, z):
