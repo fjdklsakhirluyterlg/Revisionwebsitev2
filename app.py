@@ -892,6 +892,11 @@ def stream():
     
     return Response(generator(video),mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@app.route("/ip-address")
+def ip_address():
+    x = get_user_ip_address()
+    return f"Your ip address is {x}"
+
 @app.route("/api/day-of-the-year")
 def day_of_year():
     x = get_day_of_the_year()
