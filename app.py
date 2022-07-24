@@ -928,19 +928,20 @@ def docs():
 def conway_game_of_life():
     return "I am working on it"
 
-@app.route("/stream")
-def stream():
-    video = cv2.VideoCapture(0)
-    def generator(webcam):
-        while True:
-            success, image = video.read()
-            if success:
-                ret, jpeg = cv2.imencode('.jpg', image)
-                frame = jpeg.tobytes()
-                yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+# @app.route("/stream")
+# def stream():
+#     video = cv2.VideoCapture(0)
+#     def generator(webcam):
+#         while True:
+#             success, image = video.read()
+#             if success:
+#                 ret, jpeg = cv2.imencode('.jpg', image)
+#                 frame = jpeg.tobytes()
+#                 yield (b'--frame\r\n'
+#                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
     
-    return Response(generator(video),mimetype='multipart/x-mixed-replace; boundary=frame')
+#     return Response(generator(video),mimetype='multipart/x-mixed-replace; boundary=frame')
+# STUPID VERCEL THINKA OPEN-CV IS TOO LARGE
 
 @app.route("/ip-address")
 def ip_address():
