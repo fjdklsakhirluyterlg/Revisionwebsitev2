@@ -23,18 +23,18 @@ api = Api(app)
 def internal_server_error(e):
     return f"Something went wrong : {e}", 500
 
-@app.errorhandler(405)
-def method_not_allowed(e):
-    # if a request has the wrong method to our API
-    if request.path.startswith('/api/'):
-        # we return a json saying so
-        return jsonify(message="Method Not Allowed"), 405
-    else:
-        return "wrong method!"
+# @app.errorhandler(405)
+# def method_not_allowed(e):
+#     # if a request has the wrong method to our API
+#     if request.path.startswith('/api/'):
+#         # we return a json saying so
+#         return jsonify(message="Method Not Allowed"), 405
+#     else:
+#         return "wrong method!"
 
-@app.errorhandler(404)
-def page_not_found(e):
-    return f"Sorry could not find {request.path}"
+# @app.errorhandler(404)
+# def page_not_found(e):
+#     return f"Sorry could not find {request.path}"
 
 # what is url_map
 
