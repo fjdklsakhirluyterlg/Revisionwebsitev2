@@ -183,6 +183,9 @@ def get_loc_from_ip(ip):
     e = x["org"]
     f = x["postal"]
     
+    z = [a, b, c, d, e, f]
+    return z
+    
     
 
 class Vector:
